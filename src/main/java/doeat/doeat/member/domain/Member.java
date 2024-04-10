@@ -1,7 +1,8 @@
-package doeat.doeat.domain;
+package doeat.doeat.member.domain;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -28,5 +29,11 @@ public class Member {
     @Column(name = "role")
     private Role role;
 
-
+    @Builder
+    private Member(String name, Address address, String password, Role role) {
+        this.name = name;
+        this.address = address;
+        this.password = password;
+        this.role = role;
+    }
 }

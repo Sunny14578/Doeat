@@ -1,4 +1,4 @@
-package doeat.doeat.domain;
+package doeat.doeat.rider.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;

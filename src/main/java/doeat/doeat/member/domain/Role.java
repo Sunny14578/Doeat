@@ -1,4 +1,4 @@
-package doeat.doeat.domain;
+package doeat.doeat.member.domain;
 
 import lombok.Getter;
 
