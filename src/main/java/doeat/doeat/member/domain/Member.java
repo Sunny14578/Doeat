@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "members")
 @Getter
@@ -19,8 +22,8 @@ public class Member {
     @Column(name = "name")
     private String name;
 
-    @Embedded
-    private Address address;
+    @ElementCollection
+    private List<Address> addresses = new ArrayList<>();
 
     @Column(name = "password")
     private String password;
@@ -32,7 +35,7 @@ public class Member {
     @Builder
     private Member(String name, Address address, String password, Role role) {
         this.name = name;
-        this.address = address;
+        this.addresses.add(address);
         this.password = password;
         this.role = role;
     }
