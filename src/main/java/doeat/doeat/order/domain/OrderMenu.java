@@ -1,5 +1,6 @@
-package doeat.doeat.domain;
+package doeat.doeat.order.domain;
 
+import doeat.doeat.store.domain.Menu;
 import jakarta.persistence.*;
 import lombok.Getter;
 

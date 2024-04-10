@@ -1,4 +1,4 @@
-package doeat.doeat.domain;
+package doeat.doeat.store.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -14,7 +14,7 @@ public class Menu {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id")
-    private Store Store;
+    private doeat.doeat.store.domain.Store Store;
 
     @Column(name = "explanation")
     private String explanation;

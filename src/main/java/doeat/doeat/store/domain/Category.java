@@ -1,4 +1,4 @@
-package doeat.doeat.domain;
+package doeat.doeat.store.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

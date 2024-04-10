@@ -1,5 +1,9 @@
-package doeat.doeat.domain;
+package doeat.doeat.order.domain;
 
+import doeat.doeat.delivery.domain.Delivery;
+import doeat.doeat.recruitment.domain.Recruitment;
+import doeat.doeat.member.domain.Address;
+import doeat.doeat.member.domain.Member;
 import jakarta.persistence.*;
 import lombok.Getter;
 

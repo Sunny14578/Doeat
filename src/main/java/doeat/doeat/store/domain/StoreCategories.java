@@ -1,5 +1,7 @@
-package doeat.doeat.domain;
+package doeat.doeat.store.domain;
 
+import doeat.doeat.store.domain.Category;
+import doeat.doeat.store.domain.Store;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
