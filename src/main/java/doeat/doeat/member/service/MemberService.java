@@ -57,7 +57,12 @@ public class MemberService {
 
         Optional<Member> optionalMember = memberRepository.findById(memberId);
         Member member = optionalMember.orElseThrow(IllegalArgumentException::new);
-        member.getAddresses().removeIf(address -> address.equals(addressToDelete));
+        member.getAddresses().removeIf(address -> {
+                    boolean equals = address.equals(addressToDelete);
+                    System.out.println(address+" "+addressToDelete+" "+equals);
+                    return equals;
+        }
+        );
         memberRepository.save(member);
     }
 }

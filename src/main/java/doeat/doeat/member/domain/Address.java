@@ -2,14 +2,11 @@ package doeat.doeat.member.domain;
 
 import doeat.doeat.member.dto.AddressDto;
 import jakarta.persistence.Embeddable;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @Embeddable
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@ToString
+@EqualsAndHashCode
 public class Address {
     private String street;
     private String city;

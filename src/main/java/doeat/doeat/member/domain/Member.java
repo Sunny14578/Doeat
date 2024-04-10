@@ -35,7 +35,7 @@ public class Member {
     @Builder
     private Member(String name, Address address, String password, Role role) {
         this.name = name;
-        this.addresses.add(address);
+        if(address!=null) this.addresses.add(address);
         this.password = password;
         this.role = role;
     }
