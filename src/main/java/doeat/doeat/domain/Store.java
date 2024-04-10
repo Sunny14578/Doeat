@@ -3,6 +3,7 @@ package doeat.doeat.domain;
 import jakarta.persistence.*;
 import lombok.Getter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,11 +21,9 @@ public class Store {
     @Embedded
     private Address address;
 
-    @Column(name = "category")
-    private List<String> category;
+    @OneToMany(mappedBy = "store")
+    List<StoreCategories> categories = new ArrayList<>();
 
     @Column(name = "point")
     private String point;
-
-
 }
