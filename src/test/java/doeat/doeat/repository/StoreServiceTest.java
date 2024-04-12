@@ -2,8 +2,9 @@ package doeat.doeat.repository;
 
 import doeat.doeat.member.domain.Address;
 import doeat.doeat.store.domain.Store;
-import doeat.doeat.store.dto.CreateStoreDto;
+import doeat.doeat.store.dto.request.CreateStoreRequestDto;
 import doeat.doeat.store.dto.StoreDto;
+import doeat.doeat.store.dto.request.UpdateStoreRequestDto;
 import doeat.doeat.store.repository.StoreRepository;
 import doeat.doeat.store.service.StoreService;
 import jakarta.persistence.EntityManager;
@@ -27,7 +28,7 @@ public class StoreServiceTest {
     @Test
     public void 가게등록() throws Exception{
         // given
-        CreateStoreDto storedto = CreateStoreDto.builder()
+        CreateStoreRequestDto storedto = CreateStoreRequestDto.builder()
                 .businessNumber("111-11-11111")
                 .name("테스트이름")
                 .address(Address.builder().build())
@@ -45,11 +46,11 @@ public class StoreServiceTest {
     public void 중복가게검증() throws Exception{
 
         // given
-        CreateStoreDto store1 = CreateStoreDto.builder()
+        CreateStoreRequestDto store1 = CreateStoreRequestDto.builder()
                 .businessNumber("111-11-11111")
                 .build();
 
-        CreateStoreDto store2 = CreateStoreDto.builder()
+        CreateStoreRequestDto store2 = CreateStoreRequestDto.builder()
                 .businessNumber("111-11-11111")
                 .build();
 
@@ -76,15 +77,14 @@ public class StoreServiceTest {
 
         storeRepository.save(store);
 
-        Store updatedStore = Store.builder()
-                .businessNumber(businessNumber)
+        UpdateStoreRequestDto updatedStore = UpdateStoreRequestDto.builder()
                 .name("가게2")
                 .address(Address.builder().street("main2").city("City2").zipCode("54321").build())
                 .categories(new ArrayList<>())
                 .build();
 
         // when
-        storeService.updateStore(businessNumber, updatedStore);
+        storeService.updateStore(updatedStore);
 
         // then
         Store findStore = storeRepository.findByBusinessNumber(businessNumber);
