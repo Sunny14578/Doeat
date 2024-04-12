@@ -5,17 +5,19 @@ import doeat.doeat.member.domain.Role;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.util.List;
+
 
 @Getter
 public class MemberDto {
     private String name;
     private Role role;
-    private Address address;
+    private List<Address> addresses;
 
     @Builder
-    private MemberDto(String name, Role role, Address address) {
+    private MemberDto(String name, Role role, List<Address> address) {
         this.name = name;
         this.role = role;
-        this.address = address;
+        this.addresses = address;
     }
 }
