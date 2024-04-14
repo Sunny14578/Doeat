@@ -1,5 +1,6 @@
 package doeat.doeat.store.service;
 
+import doeat.doeat.member.domain.Member;
 import doeat.doeat.store.domain.Store;
 import doeat.doeat.store.dto.request.CreateStoreRequestDto;
 import doeat.doeat.store.dto.StoreDto;
@@ -45,6 +46,22 @@ public class StoreService {
         return mapToDtoList(stores);
     }
 
+    // 가게 ID 조회
+    @Transactional
+    public StoreDto findStoreById(Long id){
+        Optional<Store> findStore = storeRepository.findById(id);
+        Store store = findStore.orElseThrow(IllegalArgumentException::new);
+
+        StoreDto storeDto = StoreDto.builder()
+                .businessNumber(store.getBusinessNumber())
+                .name(store.getName())
+                .address(store.getAddress())
+                .categories(store.getCategories())
+                .build();
+
+        return storeDto;
+    }
+
     // 가게 이름으로 조회
     @Transactional
     public List<StoreDto> findStoreName(String name){
@@ -70,14 +87,12 @@ public class StoreService {
 
     // 가게 정보 변경
     @Transactional
-    public void updateStore(UpdateStoreRequestDto updateStoreDto){
-        Store findStore = storeRepository.findByBusinessNumber(updateStoreDto.getBusinessNumber());
+    public void updateStore(Long id, UpdateStoreRequestDto updateStoreDto){
+        Optional<Store> findStore = storeRepository.findById(id);
 
-        if (findStore == null) {
-            throw new IllegalArgumentException("해당 가게가 존재하지 않습니다.");
-        }
+        Store store = findStore.orElseThrow(IllegalArgumentException::new);
 
-        findStore.update(
+        store.update(
                 updateStoreDto.getName(),
                 updateStoreDto.getAddress(),
                 updateStoreDto.getCategories()

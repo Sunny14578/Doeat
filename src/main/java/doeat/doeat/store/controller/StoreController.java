@@ -34,9 +34,16 @@ public class StoreController {
         return ResponseEntity.status(HttpStatus.OK).body(stores);
     }
 
-    @PutMapping("/{businessNumber}")
-    public ResponseEntity update(@RequestBody UpdateStoreRequestDto requestDto){
-        storeService.updateStore(requestDto);
+    @PostMapping("/{id}")
+    public ResponseEntity getStoreByName(@RequestBody Long id){
+        StoreDto store = storeService.findStoreById(id);
+
+        return ResponseEntity.status(HttpStatus.OK).body(store);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity update(@PathVariable Long id, @RequestBody UpdateStoreRequestDto requestDto){
+        storeService.updateStore(id, requestDto);
 
         return ResponseEntity.ok("업데이트에 성공하였습니다.");
     }
