@@ -14,6 +14,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Objects;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -78,20 +80,22 @@ public class StoreServiceTest {
         storeRepository.save(store);
 
         UpdateStoreRequestDto updatedStore = UpdateStoreRequestDto.builder()
-                .name("가게2")
+//                .name("가게2")
                 .address(Address.builder().street("main2").city("City2").zipCode("54321").build())
                 .categories(new ArrayList<>())
                 .build();
 
         // when
-        storeService.updateStore(updatedStore);
+        storeService.updateStore(store.getId(), updatedStore);
 
         // then
-        Store findStore = storeRepository.findByBusinessNumber(businessNumber);
-        assertEquals(updatedStore.getName(), findStore.getName());
-        assertEquals(updatedStore.getAddress().getStreet(), findStore.getAddress().getStreet());
-        assertEquals(updatedStore.getAddress().getCity(), findStore.getAddress().getCity());
-        assertEquals(updatedStore.getAddress().getZipCode(), findStore.getAddress().getZipCode());
+        Optional<Store> findStore = storeRepository.findById(store.getId());
+        Store storeTest = findStore.orElseThrow(IllegalArgumentException::new);
+
+        assertEquals(Objects.requireNonNullElse(updatedStore.getName(), store.getName()), storeTest.getName());
+        assertEquals(Objects.requireNonNullElse(updatedStore.getAddress().getStreet(), store.getAddress().getStreet()), storeTest.getAddress().getStreet());
+        assertEquals(Objects.requireNonNullElse(updatedStore.getAddress().getCity(), store.getAddress().getCity()), storeTest.getAddress().getCity());
+        assertEquals(Objects.requireNonNullElse(updatedStore.getAddress().getZipCode(), store.getAddress().getZipCode()), storeTest.getAddress().getZipCode());
     }
 
     @Test
