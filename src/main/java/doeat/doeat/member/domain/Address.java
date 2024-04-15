@@ -4,6 +4,8 @@ import doeat.doeat.member.dto.AddressDto;
 import jakarta.persistence.Embeddable;
 import lombok.*;
 
+
+@Getter
 @Embeddable
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode
