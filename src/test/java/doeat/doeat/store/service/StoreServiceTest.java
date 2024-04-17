@@ -1,4 +1,4 @@
-package doeat.doeat.repository;
+package doeat.doeat.store.service;
 
 import doeat.doeat.member.domain.Address;
 import doeat.doeat.store.domain.Store;
