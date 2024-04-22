@@ -5,6 +5,7 @@ import doeat.doeat.recruitment.domain.Recruitment;
 import doeat.doeat.member.domain.Address;
 import doeat.doeat.member.domain.Member;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
@@ -40,4 +41,21 @@ public class Order {
 
     @Embedded
     private Address address;
+
+    @Builder
+    public Order(Long id, Member member,
+                 Recruitment recruitment,
+                 LocalDateTime orderDate,
+                 boolean status, Delivery delivery,
+                 float totalPrice, Address address) {
+
+        this.id = id;
+        this.member = member;
+        this.recruitment = recruitment;
+        this.orderDate = orderDate;
+        this.status = status;
+        this.delivery = delivery;
+        this.totalPrice = totalPrice;
+        this.address = address;
+    }
 }
